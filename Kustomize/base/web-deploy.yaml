@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: kustomize-lab
+    component: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kustomize-lab
+      component: web
+  template:
+    metadata:
+      labels:
+        app: kustomize-lab
+        component: web
+    spec:
+      serviceAccountName: app-sa
+      containers:
+        - name: web
+          image: nginx:1.25
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - name: web-content
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+
+        # This sidecar is here ONLY to make replacements/name transforms observable in logs.
+        - name: diag
+          image: busybox:1.36
+          command: ["sh","-c"]
+          args:
+            - |
+              while true; do
+                echo "Trying http://$API_SVC:$API_PORT ..."
+                wget -qO- "http://$API_SVC:$API_PORT" || true
+                sleep 5
+              done
+          env:
+            - name: API_SVC
+              value: "api"   # intentionally plain; namePrefix later will break it unless you fix via replacements
+            - name: API_PORT
+              value: "80"
+      volumes:
+        - name: web-content
+          configMap:
+            name: web-content

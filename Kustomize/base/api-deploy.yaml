@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    app: kustomize-lab
+    component: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kustomize-lab
+      component: api
+  template:
+    metadata:
+      labels:
+        app: kustomize-lab
+        component: api
+    spec:
+      serviceAccountName: app-sa
+      containers:
+        - name: api
+          image: hashicorp/http-echo:0.2.3
+          args:
+            - "-text=$(API_TEXT)"
+          env:
+            - name: API_TEXT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: api_text
+          ports:
+            - name: http
+              containerPort: 5678
