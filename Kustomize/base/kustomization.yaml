@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  - namespace.yaml
   - serviceaccount.yaml
   - configmap-app.yaml
   - configmap-web.yaml
@@ -9,3 +10,5 @@ resources:
   - web-deploy.yaml
   - api-svc.yaml
   - web-svc.yaml
+
+namespace: kust-lab
