@@ -24,5 +24,6 @@ images:
 
 configMapGenerator:
   - name: app-config
-    envs:
-      - app.env
+    literals:
+      - api_text="hello-from-base"
+    behavior: merge
