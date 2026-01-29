@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - serviceaccount.yaml
-  - configmap-app.yaml
   - configmap-web.yaml
   - api-deploy.yaml
   - web-deploy.yaml
