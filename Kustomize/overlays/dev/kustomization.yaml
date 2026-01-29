@@ -21,6 +21,13 @@ patches:
   - path: api-deploy-secret-mount.yaml
   - path: api-deploy-resources.yaml
   - path: web-deploy-resources.yaml
+  - target:
+      kind: Service
+      name: web
+    patch: |-
+      - op: add
+        path: /spec/type
+        value: NodePort
 
 images:
   - name: nginx
