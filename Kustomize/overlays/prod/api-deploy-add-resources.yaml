@@ -1,6 +1,6 @@
 - op: add 
   path: /spec/template/spec/containers/0/resources
-  value: |-
+  value: 
     requests:
       memory: "32Mi"
       cpu: "100m"
