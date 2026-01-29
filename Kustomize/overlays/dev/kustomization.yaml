@@ -16,6 +16,7 @@ commonAnnotations:
 patches:
   - path: change-api-deploy-replicas.yaml
   - path: change-web-deploy-replicas.yaml
+  - path: api-deploy-secret-mount.yaml
 
 images:
   - name: nginx
@@ -27,3 +28,8 @@ configMapGenerator:
     literals:
       - api_text="hello-from-dev"
     behavior: merge
+
+secretGenerator:
+  - name: api-secret
+    literals:
+      - token=devtoken123
