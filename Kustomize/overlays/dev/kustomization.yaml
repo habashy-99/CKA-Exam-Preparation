@@ -7,8 +7,8 @@ resources:
 labels:
   - pairs:
       env: dev
-    includeSelectors: true
-    includeTemplates: true
+    includeSelectors: false
+    includeTemplates: false
 
 commonAnnotations:
   owner: cka
