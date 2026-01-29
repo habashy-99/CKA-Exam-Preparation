@@ -3,3 +3,12 @@ kind: Kustomization
 
 resources:
   - ../../base
+
+labels:
+  - pairs:
+      env: dev
+    includeSelectors: true
+    includeTemplates: true
+
+commonAnnotations:
+  owner: cka
