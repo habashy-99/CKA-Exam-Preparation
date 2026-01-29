@@ -19,6 +19,8 @@ patches:
   - path: change-api-deploy-replicas.yaml
   - path: change-web-deploy-replicas.yaml
   - path: api-deploy-secret-mount.yaml
+  - path: api-deploy-resources.yaml
+  - path: web-deploy-resources.yaml
 
 images:
   - name: nginx
