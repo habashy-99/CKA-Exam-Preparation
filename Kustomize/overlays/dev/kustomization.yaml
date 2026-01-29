@@ -16,3 +16,8 @@ commonAnnotations:
 patches:
   - path: change-api-deploy-replicas.yaml
   - path: change-web-deploy-replicas.yaml
+
+images:
+  - name: nginx
+    newName: nginx
+    newTag: 1.25-alpine
