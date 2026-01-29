@@ -3,3 +3,14 @@ kind: Kustomization
 
 resources:
   - ../../base
+
+patches:
+  - target:
+      kind: Deployment
+      name: api
+    path: api-deploy-patch-replicas.yaml
+  
+  - target:
+      kind: Deployment
+      name: web
+    path: web-deploy-patch-replicas.yaml

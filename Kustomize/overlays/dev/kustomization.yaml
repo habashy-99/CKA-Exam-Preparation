@@ -12,3 +12,7 @@ labels:
 
 commonAnnotations:
   owner: cka
+
+patches:
+  - path: change-api-deploy-replicas.yaml
+  - path: change-web-deploy-replicas.yaml
