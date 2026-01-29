@@ -21,3 +21,8 @@ images:
   - name: nginx
     newName: nginx
     newTag: 1.25-alpine
+
+configMapGenerator:
+  - name: app-config
+    envs:
+      - app.env
