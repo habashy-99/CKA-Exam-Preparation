@@ -12,3 +12,8 @@ resources:
   - web-svc.yaml
 
 namespace: kust-lab
+
+configMapGenerator:
+  - name: app-config
+    envs:
+      - app.env

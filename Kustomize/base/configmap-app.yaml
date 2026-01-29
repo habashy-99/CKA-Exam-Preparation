@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: app-config
-data:
-  api_text: "hello-from-base"
-  feature_flag: "off"
