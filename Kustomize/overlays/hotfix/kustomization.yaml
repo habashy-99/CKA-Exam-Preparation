@@ -11,16 +11,16 @@ patches:
       kind: Deployment
       name: api
     patch: |-
-      op: replace
-      path: /spec/replicas
-      value: 1
+      - op: replace
+        path: /spec/replicas
+        value: 1
   - target:
       kind: Deployment
       name: web
     patch: |-
-      op: replace
-      path: /spec/replicas
-      value: 1
+      - op: replace
+        path: /spec/replicas
+        value: 1
 
 configMapGenerator:
   - name: app-config
