@@ -46,3 +46,15 @@ secretGenerator:
   - name: api-secret
     literals:
       - token=devtoken123
+
+replacements:
+- source:
+    kind: Service
+    name: api
+    fieldPath: metadata.name
+  targets:
+  - select:
+      kind: Deployment
+      name: web
+    fieldPaths:
+    - spec.template.spec.containers.1.env.0.value
