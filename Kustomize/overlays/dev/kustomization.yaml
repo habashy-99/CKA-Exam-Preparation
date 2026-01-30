@@ -6,6 +6,8 @@ resources:
 
 namespace: kust-lab
 
+namePrefix: dev-
+
 labels:
   - pairs:
       env: dev
