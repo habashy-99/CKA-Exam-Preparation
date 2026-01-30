@@ -24,6 +24,4 @@ patches:
   - target:
       kind: Deployment
       name: web
-    patch: |-
-      op: remove
-      path: /spec/template/spec/containers/1/env
+    path: remove-diag-container.yaml      
