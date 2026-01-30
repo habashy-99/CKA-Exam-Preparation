@@ -26,4 +26,4 @@ patches:
       name: web
     patch: |-
       op: remove
-      path: /spec/template/spec/containers/1
+      path: /spec/template/spec/containers/1/env
