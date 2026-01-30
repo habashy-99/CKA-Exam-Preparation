@@ -24,4 +24,6 @@ patches:
   - target:
       kind: Deployment
       name: web
-    path: remove-diag-container.yaml      
+    path: remove-diag-container.yaml
+  - path: api-deploy-add-pod-container-scc.yaml
+  - path: web-deploy-add-pod-container-scc.yaml
