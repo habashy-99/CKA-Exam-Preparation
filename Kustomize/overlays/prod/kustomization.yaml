@@ -21,3 +21,9 @@ patches:
       kind: Deployment
       name: web
     path: web-deploy-add-resources.yaml
+  - target:
+      kind: Deployment
+      name: web
+    patch: |-
+      op: remove
+      path: /spec/template/spec/containers/1
