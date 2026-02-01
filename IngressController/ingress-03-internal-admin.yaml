@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: cilium
   rules:
-  - host: " internal.shop.local"
+  - host: "internal.shop.local"
     http:
       paths:
       - pathType: Exact
