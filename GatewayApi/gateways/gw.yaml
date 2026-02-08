@@ -13,3 +13,14 @@ spec:
     allowedRoutes:
       namespaces:
         from: Same
+  - name: https
+    protocol: HTTPS
+    port: 9443
+    hostname: shop-gw.local
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: tls-secret
+    allowedRoutes:
+      namespaces:
+        from: Same
