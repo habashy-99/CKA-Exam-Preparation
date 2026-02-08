@@ -41,3 +41,11 @@ spec:
     backendRefs:
     - name: admin
       port: 80
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /reports
+    backendRefs:
+    - name: reports
+      port: 80
+      namespace: backend
