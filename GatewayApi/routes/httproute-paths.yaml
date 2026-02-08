@@ -30,7 +30,7 @@ spec:
     - headers:
       - type: Exact
         name: x-canary
-        value: true
+        value: "true"
     backendRefs:
     - name: api-v2
       port: 80
