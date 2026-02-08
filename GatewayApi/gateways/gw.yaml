@@ -10,3 +10,6 @@ spec:
     protocol: HTTP
     port: 9443
     hostname: shop-gw.local
+    allowedRoutes:
+      namespaces:
+        from: Same
