@@ -26,6 +26,17 @@ spec:
   - matches:
     - path:
         type: PathPrefix
+        value: /api
+    - headers:
+      - type: Exact
+        name: x-canary
+        value: true
+    backendRefs:
+    - name: api-v2
+      port: 80
+  - matches:
+    - path:
+        type: PathPrefix
         value: /admin
     backendRefs:
     - name: admin
