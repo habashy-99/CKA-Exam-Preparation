@@ -1,0 +1,166 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gw-lab
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: gw-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: frontend }
+  template:
+    metadata:
+      labels: { app: frontend }
+    spec:
+      containers:
+      - name: frontend
+        image: hashicorp/http-echo:1.0
+        args: ["-listen=:8080", "-text=frontend OK"]
+        ports: [{ containerPort: 8080 }]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: gw-lab
+spec:
+  selector: { app: frontend }
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-v1
+  namespace: gw-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: api, version: v1 }
+  template:
+    metadata:
+      labels: { app: api, version: v1 }
+    spec:
+      containers:
+      - name: api
+        image: hashicorp/http-echo:1.0
+        args: ["-listen=:8080", "-text=api v1 OK"]
+        ports: [{ containerPort: 8080 }]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-v1
+  namespace: gw-lab
+spec:
+  selector: { app: api, version: v1 }
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-v2
+  namespace: gw-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: api, version: v2 }
+  template:
+    metadata:
+      labels: { app: api, version: v2 }
+    spec:
+      containers:
+      - name: api
+        image: hashicorp/http-echo:1.0
+        args: ["-listen=:8080", "-text=api v2 OK"]
+        ports: [{ containerPort: 8080 }]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-v2
+  namespace: gw-lab
+spec:
+  selector: { app: api, version: v2 }
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin
+  namespace: gw-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: admin }
+  template:
+    metadata:
+      labels: { app: admin }
+    spec:
+      containers:
+      - name: admin
+        image: hashicorp/http-echo:1.0
+        args: ["-listen=:8080", "-text=admin OK"]
+        ports: [{ containerPort: 8080 }]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin
+  namespace: gw-lab
+spec:
+  selector: { app: admin }
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+---
+# cross-namespace backend (for ReferenceGrant task)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reports
+  namespace: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: reports }
+  template:
+    metadata:
+      labels: { app: reports }
+    spec:
+      containers:
+      - name: reports
+        image: hashicorp/http-echo:1.0
+        args: ["-listen=:8080", "-text=reports OK (backend ns)"]
+        ports: [{ containerPort: 8080 }]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reports
+  namespace: backend
+spec:
+  selector: { app: reports }
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+
